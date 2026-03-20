@@ -41,7 +41,6 @@ const WeatherCharts = ({ weatherData, aqiData, selectedDate }) => {
     return idx === -1 ? 0 : idx;
   }, [weatherData, currentHourStr]);
 
-  /* -------- HOURLY WEATHER DATA -------- */
 
   const hourlyChartData = useMemo(() => {
     return weatherData.hourly.time
@@ -60,7 +59,6 @@ const WeatherCharts = ({ weatherData, aqiData, selectedDate }) => {
       });
   }, [weatherData, startIdx]);
 
-  /* -------- AQI TREND DATA -------- */
 
   const aqiTrendData = useMemo(() => {
     const start = Math.max(0, startIdx - 12);
@@ -80,10 +78,8 @@ const WeatherCharts = ({ weatherData, aqiData, selectedDate }) => {
 
   return (
     <div className="flex flex-col gap-6 mt-6">
-      {/* Top Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
-        {/* Temperature & Visibility */}
         <ReusableChart
           category="HOURLY FORECAST"
           title="Temperature & Visibility"
@@ -129,7 +125,6 @@ const WeatherCharts = ({ weatherData, aqiData, selectedDate }) => {
           </AreaChart>
         </ReusableChart>
 
-        {/* Precipitation & Humidity */}
         <ReusableChart
           category="HOURLY FORECAST"
           title="Precipitation & Humidity"
@@ -168,7 +163,6 @@ const WeatherCharts = ({ weatherData, aqiData, selectedDate }) => {
         </ReusableChart>
       </div>
 
-      {/* AQI Chart */}
       <ReusableChart
         category="TREND ANALYSIS"
         title="PM10 & PM2.5 Hourly Distribution"

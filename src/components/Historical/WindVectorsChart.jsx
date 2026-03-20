@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  Brush,
 } from "recharts";
 import ReusableChart from "../Common/ReusableChart";
 
@@ -18,7 +19,7 @@ const WindVectorsChart = ({ weatherData }) => {
             subtitle="SPEED AND DIRECTION TRENDS"
             height={300}
         >
-            <LineChart data={weatherData}>
+            <LineChart data={weatherData} style={{ outline: "none" }}>
                 <CartesianGrid
                     strokeDasharray="3 3"
                     vertical={false}
@@ -27,6 +28,7 @@ const WindVectorsChart = ({ weatherData }) => {
                 <XAxis dataKey="date" hide />
                 <YAxis hide />
                 <Tooltip
+                    cursor={false}
                     content={({ active, payload }) => {
                         if (active && payload && payload.length) {
                             return (
@@ -65,13 +67,25 @@ const WindVectorsChart = ({ weatherData }) => {
                     name="Wind Vector"
                 />
                 <Legend
-                    verticalAlign="bottom"
+                    verticalAlign="top"
+                    align="right"
                     iconType="circle"
+                    wrapperStyle={{ paddingBottom: "20px" }}
                     formatter={() => (
-                        <span className="text-xs font-bold text-[#4a5568] px-2">
+                        <span className="text-[10px] md:text-xs font-bold text-[#4a5568] px-1 md:px-2">
                             Wind Speed & Direction
                         </span>
                     )}
+                />
+                <Brush
+                    dataKey="date"
+                    height={30}
+                    stroke="#e2e8f0"
+                    fill="#f8fafc"
+                    tickFormatter={(val) => {
+                        const d = new Date(val);
+                        return `${d.getMonth() + 1}/${d.getDate()}`;
+                    }}
                 />
             </LineChart>
         </ReusableChart>

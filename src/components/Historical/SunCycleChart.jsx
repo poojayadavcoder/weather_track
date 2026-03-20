@@ -8,6 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
+  Brush,
 } from "recharts";
 import ReusableChart from "../Common/ReusableChart";
 
@@ -19,7 +20,7 @@ const SunCycleChart = ({ weatherData }) => {
             subtitle="SUNRISE AND SUNSET VARIATION"
             height={300}
         >
-            <LineChart data={weatherData}>
+            <LineChart data={weatherData} style={{ outline: "none" }}>
                 <CartesianGrid
                     strokeDasharray="3 3"
                     vertical={false}
@@ -33,6 +34,7 @@ const SunCycleChart = ({ weatherData }) => {
                     hide
                 />
                 <Tooltip
+                    cursor={false}
                     formatter={(value) => {
                         const hours = Math.floor(value);
                         const minutes = Math.round((value - hours) * 60);
@@ -56,13 +58,25 @@ const SunCycleChart = ({ weatherData }) => {
                     name="Sunset"
                 />
                 <Legend
-                    verticalAlign="bottom"
+                    verticalAlign="top"
+                    align="right"
                     iconType="circle"
+                    wrapperStyle={{ paddingBottom: "20px" }}
                     formatter={(value) => (
-                        <span className="text-xs font-bold text-[#4a5568] px-2">
+                        <span className="text-[10px] md:text-xs font-bold text-[#4a5568] px-1 md:px-2">
                             {value}
                         </span>
                     )}
+                />
+                <Brush
+                    dataKey="date"
+                    height={30}
+                    stroke="#e2e8f0"
+                    fill="#f8fafc"
+                    tickFormatter={(val) => {
+                        const d = new Date(val);
+                        return `${d.getMonth() + 1}/${d.getDate()}`;
+                    }}
                 />
             </LineChart>
         </ReusableChart>

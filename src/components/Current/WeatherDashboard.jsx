@@ -2,7 +2,6 @@ import React, { lazy, Suspense, memo, useMemo } from "react";
 import WeatherCard from "../WeatherCard";
 import { Droplets, CloudRain, Sun, Wind } from "lucide-react";
 
-// Lazy load heavy chart component
 const WeatherCharts = lazy(() => import("./WeatherCharts"));
 
 const WeatherDashboard = ({ weatherData, aqiData, selectedDate }) => {
@@ -46,14 +45,12 @@ const WeatherDashboard = ({ weatherData, aqiData, selectedDate }) => {
     return idx === -1 ? 0 : idx;
   }, [aqiData, currentHourStr]);
 
-  // Weather values
   const currentTemp = Math.round(weatherData.hourly.temperature_2m[hourIdx]);
   const feelsLike = currentTemp;
   const humidity = weatherData.hourly.relative_humidity_2m[hourIdx];
   const precipitation = weatherData.hourly.precipitation[hourIdx];
   const windSpeed = Math.round(weatherData.hourly.wind_speed_10m[hourIdx]);
 
-  // Daily data
   const daily = weatherData.daily;
   const minTemp = daily.temperature_2m_min?.[0]
     ? Math.round(daily.temperature_2m_min[0])
@@ -68,7 +65,6 @@ const WeatherDashboard = ({ weatherData, aqiData, selectedDate }) => {
   const sunrise = daily.sunrise?.[0];
   const sunset = daily.sunset?.[0];
 
-  // AQI values
   const usAqi = aqiData.hourly.us_aqi[aqiHourIdx];
   const pm2_5 = aqiData.hourly.pm2_5[aqiHourIdx];
   const pm10 = aqiData.hourly.pm10[aqiHourIdx];
@@ -85,7 +81,6 @@ const WeatherDashboard = ({ weatherData, aqiData, selectedDate }) => {
   return (
     <div className="flex flex-col gap-6 p-2 xl:p-6 lg:px-10 bg-gray-50/50 min-h-screen">
 
-      {/* Top weather stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 xl:grid-cols-12 gap-6 items-stretch">
 
         <div className="lg:col-span-4 h-full">
@@ -151,7 +146,6 @@ const WeatherDashboard = ({ weatherData, aqiData, selectedDate }) => {
         </div>
       </div>
 
-      {/* AQI + Sun cycle */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
 
         <WeatherCard
@@ -168,7 +162,6 @@ const WeatherDashboard = ({ weatherData, aqiData, selectedDate }) => {
 
       </div>
 
-      {/* Charts (lazy loaded) */}
       <Suspense
         fallback={
           <div className="flex justify-center py-10">

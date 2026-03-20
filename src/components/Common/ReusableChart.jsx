@@ -13,7 +13,6 @@ const ReusableChart = ({
 }) => {
   return (
     <div className={`bg-white rounded-[2rem] shadow-sm border border-gray-100 flex flex-col overflow-hidden ${className}`}>
-      {/* Header with fixed padding */}
       <div className="p-6 md:p-8 pb-4">
         <div className="flex justify-between items-center flex-wrap gap-4">
           <div>
@@ -41,7 +40,7 @@ const ReusableChart = ({
         </div>
       </div>
 
-      <div style={{ width: "100%", height: height }}>
+      <div className="outline-none" style={{ width: "100%", height: height }}>
         <ResponsiveContainer width="100%" height="100%">
           {children}
         </ResponsiveContainer>

@@ -19,11 +19,11 @@ const TempTrendChart = ({ weatherData }) => {
             subtitle="MEAN, MAX, AND MIN DISTRIBUTION"
             height={450}
         >
-            {/* Keeping the internal padding for the chart itself */}
-            <div className="h-full w-full bg-gray-50 p-4">
+            <div className="h-full w-full bg-gray-50 p-4 outline-none">
                 <LineChart
                     data={weatherData}
                     margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+                    style={{ outline: "none" }}
                 >
                     <defs>
                         <linearGradient
@@ -72,6 +72,7 @@ const TempTrendChart = ({ weatherData }) => {
                     <YAxis hide />
 
                     <Tooltip
+                        cursor={false}
                         content={({ active, payload }) => {
                             if (active && payload && payload.length) {
                                 return (
@@ -155,11 +156,13 @@ const TempTrendChart = ({ weatherData }) => {
                     />
 
                     <Legend
-                        verticalAlign="bottom"
+                        verticalAlign="top"
+                        align="right"
                         height={36}
                         iconType="circle"
+                        wrapperStyle={{ paddingBottom: "20px" }}
                         formatter={(value) => (
-                            <span className="text-xs font-bold text-gray-600 px-2">
+                            <span className="text-[10px] md:text-xs font-bold text-gray-600 px-1 md:px-2">
                                 {value}
                             </span>
                         )}
