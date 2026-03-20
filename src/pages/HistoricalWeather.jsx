@@ -52,7 +52,6 @@ const HistoricalWeather = () => {
         getHistoricalAQI(location.lat, location.lon, startStr, endStr),
       ]);
 
-      /* -------- PROCESS WEATHER DATA -------- */
 
       const maxTempVal = Math.max(...weather.daily.temperature_2m_max);
       const peakIdx = weather.daily.temperature_2m_max.indexOf(maxTempVal);
@@ -90,7 +89,6 @@ const HistoricalWeather = () => {
         };
       });
 
-      /* -------- PROCESS AQI DATA -------- */
 
       const aqiProcessed = [];
 
@@ -130,7 +128,6 @@ const HistoricalWeather = () => {
     <div className="w-full p-4 md:p-10 bg-[#f8fbff] min-h-screen font-['Poppins']">
       <div className="max-w-[1400px] mx-auto">
 
-        {/* HEADER */}
         <div className="flex flex-col lg:flex-row justify-between gap-6 mb-10">
 
           <h1 className="text-3xl font-semibold text-[#2d3a54]">
@@ -147,7 +144,6 @@ const HistoricalWeather = () => {
           />
         </div>
 
-        {/* ERROR MESSAGE */}
         {error && (
           <div className="bg-red-50 text-red-600 p-4 rounded-2xl flex items-center gap-3 mb-8 border border-red-100">
             <AlertCircle className="w-5 h-5" />
@@ -155,14 +151,12 @@ const HistoricalWeather = () => {
           </div>
         )}
 
-        {/* LOADING */}
         {loading && (
           <div className="flex justify-center py-20 text-gray-500">
             Loading historical data...
           </div>
         )}
 
-        {/* CHARTS */}
         {weatherData && !loading && (
           <div className="grid grid-cols-1 gap-8 mb-12">
 
@@ -181,7 +175,6 @@ const HistoricalWeather = () => {
           </div>
         )}
 
-        {/* EMPTY STATE */}
         {!weatherData && !loading && (
           <div className="flex flex-col items-center justify-center py-20 bg-white rounded-[3rem] border border-dashed border-gray-100">
 

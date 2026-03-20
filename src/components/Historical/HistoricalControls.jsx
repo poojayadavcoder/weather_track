@@ -54,7 +54,7 @@ const HistoricalControls = ({
       <button
         onClick={handleFetch}
         disabled={loading}
-        className="mt-6 px-8 py-2.5 text-white rounded-xl font-semibold shadow-lg shadow-blue-500/20 bg-blue-600 transition-all disabled:opacity-50 flex items-center gap-2 cursor-pointer"
+        className="mt-6 px-8 max-w-[200px] md:w-[200px] py-2.5 text-white rounded-xl font-semibold shadow-lg shadow-blue-500/20 bg-blue-600 transition-all disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
       >
         {loading ? (
           <Loader2 className="w-4 h-4 animate-spin" />
